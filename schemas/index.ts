@@ -6,7 +6,7 @@ export interface Preview {
 export interface MainProps {
   children: React.ReactNode;
   title: string;
-  loading: boolean;
+  loading?: boolean;
 }
 
 

@@ -1,3 +1,5 @@
+import { Tweet, User } from "@prisma/client";
+
 export type ImageFormat = "vertical" | "horizontal" | "square";
 
 export type UploadFileResponse =
@@ -29,3 +31,23 @@ export type PostCreatedProps = {
   url:string
   text:string
 }
+
+export type TweetExtended = ({
+  user: {
+      id: string;
+      name: string;
+      userId: string;
+      username: string;
+      profileImage: string | null;
+      createdAt: Date;
+      updatedAt: Date;
+  } | null;
+} & {
+  id: string;
+  userId: string | null;
+  text: string | null;
+  imageUrl: string | null;
+  createdAt: Date;
+  updateAt: Date;
+})[]
+
