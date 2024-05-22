@@ -12,10 +12,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTheme } from "next-themes";
 import CustomSVG from "@/components/customSVG";
 import { usePathname } from "next/navigation";
 import Loading from "@/components/loading";
+import {CreatePostButton} from "./ButtonTweet";
 
 const LeftSideabar = () => {
   const pathname = usePathname();
@@ -50,6 +50,9 @@ const LeftSideabar = () => {
             </Link>
           );
         })}
+      </div>
+      <div>
+        <CreatePostButton />
       </div>
       {!isLoaded ? (
         <Loading />

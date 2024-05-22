@@ -1,8 +1,7 @@
 "use server";
 
 import db from "@/lib/db";
-
-
+import { revalidatePath } from "next/cache";
 
 export const PostAll = async () => {
   try {
@@ -14,6 +13,7 @@ export const PostAll = async () => {
         createdAt: "desc",
       },
     });
+    revalidatePath("/");
     return Post;
   } catch (error) {
     console.log(error);
