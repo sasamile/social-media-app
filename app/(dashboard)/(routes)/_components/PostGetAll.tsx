@@ -74,7 +74,7 @@ const PostGetAll = async () => {
                   alt="image"
                   width={500}
                   height={500}
-                  className="mx-auto object-cover  aspect-video rounded-lg mb-4 w-[80%] h-[360px]"
+                  className="mx-auto object-cover object-top aspect-video  rounded-lg mb-4 w-[80%] md:h-[360px]"
                 />
               )}
             </div>
