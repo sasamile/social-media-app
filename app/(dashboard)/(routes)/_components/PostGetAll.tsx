@@ -35,9 +35,13 @@ const PostGetAll = async () => {
                     className="rounded-full"
                   />
                 )}
-                <h2>{post.user?.name}</h2>
-                <p>@{post.user?.username}</p>
-                <p>{date}</p>
+                <div className="flex flex-col md:flex-row md:gap-8">
+                  <div className="flex gap-4">
+                    <h2>{post.user?.name}</h2>
+                    <p>@{post.user?.username}</p>
+                  </div>
+                  <p>{date}</p>
+                </div>
               </div>
               <div>
                 <DropdownMenu>
@@ -74,7 +78,7 @@ const PostGetAll = async () => {
                   alt="image"
                   width={500}
                   height={500}
-                  className="mx-auto object-cover object-top aspect-video  rounded-lg mb-4 w-[80%] md:h-[360px]"
+                  className="mx-auto object-cover object-top aspect-video  rounded-lg mb-4 w-[80%] max-md:w-[95%] md:h-[360px] max-md:h-[300px]"
                 />
               )}
             </div>

@@ -24,7 +24,7 @@ interface PostFormProps {
   onOpen?: (open: boolean) => void;
 }
 
- function FormTweet({
+function FormTweet({
   imageInputId,
   className,
   imageStyles,
@@ -63,8 +63,7 @@ interface PostFormProps {
             toast({
               variant: "destructive",
               title: "Error",
-              
-            })
+            });
           }
 
           if (success) {
@@ -74,17 +73,15 @@ interface PostFormProps {
             toast({
               variant: "success",
               title: "Tweet creado correctamente",
-              
-            })
+            });
           }
         }
 
         if (!response?.success) {
           toast({
             variant: "destructive",
-            title: "Error",
-            
-          })
+            title: "Error Image exceeds 4MB",
+          });
         }
       });
     }
@@ -98,7 +95,7 @@ interface PostFormProps {
             variant: "destructive",
             title: "Error",
             description: error,
-          })
+          });
         }
 
         if (success) {
@@ -107,8 +104,7 @@ interface PostFormProps {
           toast({
             variant: "success",
             title: "Tweet creado correctamente",
-            
-          })
+          });
         }
       });
     }
@@ -126,8 +122,7 @@ interface PostFormProps {
         toast({
           variant: "destructive",
           title: "Error",
-          
-        })
+        });
         return;
       }
 
@@ -141,7 +136,7 @@ interface PostFormProps {
   return (
     <div
       className={cn(
-        "flex items-start ms:px-5 px-4 ms:pt-5 pt-3 pb-3 ms:gap-3 gap-2 border-b border-white/10",
+        "flex items-start ms:px-5 px-4 ms:pt-5 pt-3 pb-3 ms:gap-3 gap-2 border-b border-white/10 ",
         className
       )}
     >
@@ -214,5 +209,4 @@ interface PostFormProps {
   );
 }
 
-
-export default FormTweet
+export default FormTweet;

@@ -7,7 +7,9 @@ export default function Home() {
   return (
     <>
       <MainSeccion title="Home">
-        <FormTweet />
+        <div className="max-md:hidden">
+          <FormTweet />
+        </div>
         <PostGetAll />
       </MainSeccion>
     </>

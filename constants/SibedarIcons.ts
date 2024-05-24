@@ -1,5 +1,5 @@
-import {HomeIcon, BellIcon ,InboxIcon, BookmarkIcon, ClipboardDocumentCheckIcon, UserIcon, HashtagIcon} from "@heroicons/react/24/solid"
-import {EllipsisHorizontalCircleIcon} from "@heroicons/react/24/outline"
+import {HomeIcon, BellIcon ,InboxIcon,UserIcon, HashtagIcon} from "@heroicons/react/24/solid"
+
 
 export const SibedarIcons = [
     {
@@ -23,25 +23,11 @@ export const SibedarIcons = [
         path : "/messages"
     },      
     {
-        name: "Bookmarks",
-        icon: BookmarkIcon,
-        path : "/bookmarks"
-    },
-    {
-        name: "Lists",
-        icon: ClipboardDocumentCheckIcon,
-        path : "/lists"
-    },
-    {
         name: "Profile",
         icon: UserIcon,
         path : "/profile"
     },
-    {
-        name: "More",
-        icon: EllipsisHorizontalCircleIcon,
-        path : "/more"
-    }
+  
     
 ]
 
