@@ -46,41 +46,73 @@ function FormTweet({
   const { setValue, getValues, reset, register, watch } = form;
 
   const watchedCaption = watch("caption");
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+
+    if (file) {
+      // Verificar el tamaño del archivo (en bytes)
+      const maxSizeInBytes = 16 * 1024 * 1024; // 16MB
+      if (file.size > maxSizeInBytes) {
+        // El archivo excede el tamaño permitido
+        setImageSrc(null);
+        toast({
+          variant: "destructive",
+          title: "Error",
+        });
+        return;
+      }
+
+      // Crear una URL para el archivo seleccionado
+      const src = URL.createObjectURL(file);
+
+      setImageSrc(src);
+    }
+  };
 
   const handleSubmite = (formData: FormData) => {
     if (imageSrc) {
       startTransition(async () => {
-        const response = await uploadFiles(formData);
+        try {
+          const response = await uploadFiles(formData);
 
-        if (response?.success && response.data) {
-          setValue("imageUrl", response.data.url);
-          const { error, success } = await PostCreated(getValues());
+          if (response?.success && response.data) {
+            setValue("imageUrl", response.data.url);
+            const { error, success } = await PostCreated(getValues());
 
-          if (error) {
-            reset();
-            setImageSrc(null);
-            await deleteImageFile(response.data?.url);
-            toast({
-              variant: "destructive",
-              title: "Error",
-            });
+            if (error) {
+              reset();
+              setImageSrc(null);
+              await deleteImageFile(response.data?.url);
+              toast({
+                variant: "destructive",
+                title: "Error",
+              });
+            }
+
+            if (success) {
+              reset();
+              setImageSrc(null);
+              if (onOpen) onOpen(false);
+              toast({
+                variant: "success",
+                title: "Tweet creado correctamente",
+              });
+            }
+
+            if (!response?.success) {
+              toast({
+                variant: "destructive",
+                title: "Error Image exceeds 4MB",
+              });
+            }
           }
-
-          if (success) {
-            reset();
-            setImageSrc(null);
-            if (onOpen) onOpen(false);
-            toast({
-              variant: "success",
-              title: "Tweet creado correctamente",
-            });
-          }
-        }
-
-        if (!response?.success) {
+        } catch (error) {
+          console.error("Error al subir la imagen:", error);
           toast({
             variant: "destructive",
-            title: "Error Image exceeds 4MB",
+            title: "Error",
+            description:
+              "No se pudo subir la imagen. Por favor, inténtalo de nuevo.",
           });
         }
       });
@@ -107,29 +139,6 @@ function FormTweet({
           });
         }
       });
-    }
-  };
-
-  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-
-    if (file) {
-      // Verificar el tamaño del archivo (en bytes)
-      const maxSizeInBytes = 16 * 1024 * 1024; // 16MB
-      if (file.size > maxSizeInBytes) {
-        // El archivo excede el tamaño permitido
-        setImageSrc(null);
-        toast({
-          variant: "destructive",
-          title: "Error",
-        });
-        return;
-      }
-
-      // Crear una URL para el archivo seleccionado
-      const src = URL.createObjectURL(file);
-
-      setImageSrc(src);
     }
   };
 
