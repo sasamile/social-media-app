@@ -115,7 +115,7 @@ function FormTweet({
 
     if (file) {
       // Verificar el tamaño del archivo (en bytes)
-      const maxSizeInBytes = 1 * 2024 * 2024; // 4MB
+      const maxSizeInBytes = 4 * 1024 * 1024; // 4MB
       if (file.size > maxSizeInBytes) {
         // El archivo excede el tamaño permitido
         setImageSrc(null);
